@@ -1,0 +1,11 @@
+Bug Tracker
+List of important features:
+(Adapted from this thread: https://stackoverflow.com/questions/318996/what-should-a-good-bugtracking-tool-be-capable-of)
+1. Collect bugs --> A page for creating a 'bug object' --> Bug name, descriptions, priority and user assignment, photo upload
+2. Order bugs on priority/severity/due date etc --> Feature in main page to reorder the all the bug tickets
+3. Assign bugs to developers (see 1)
+4. Track a bug history --> Bug info page redirected from clicking on the bug ticket in the main page, info page can also include item 5, also item 8 (a field for updates)
+5. Link solved bugs to releases --> When the bug is tagged fixed, make the user choose which release it is going into. A log file can be created in the end
+6. Provide enough information or a reference to get the information to reproduce the bug (point 1)
+7. Usable by more than one developer --> User login, user page with password info and bug info
+8. Bug status need to be accessible by the client that reported the bug. --> Email on updates
