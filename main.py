@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
+from forms import loginForm
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 bug_list = [
     {
@@ -18,18 +20,20 @@ bug_list = [
 ]
 
 @app.route('/')
-@app.route('/home')
+# @app.route('/home')
 def home_page():
-    return render_template('home.html', bug_list = bug_list)
+    return render_template('landing.html')
 
+@app.route('/login')
+def login():
+    form = loginForm()
+    return render_template('login.html', title='Login', form = form)
 
 @app.route('/add_bug')
 def add_bug():
     return 'Hi bug'
 
-@app.route('/login')
-def login():
-    return 'login'
+
 
 @app.route('/account')
 def account():

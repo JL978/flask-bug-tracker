@@ -1,0 +1,16 @@
+body {
+    height: 100%;
+}
+
+.container-sm {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 720px; 
+  }
+
+.loginForm {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
