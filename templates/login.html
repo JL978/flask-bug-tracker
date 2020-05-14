@@ -1,26 +1,71 @@
 {%extends 'template.html'%}
 {%block content%}
-    <div class='container-sm'>
-        <div class='w-75 mx-auto mt-5 shadow-sm p-3 mb-5 bg-white rounded'>
-            <form method="POST" action=''>
-                {{form.hidden_tag()}}
-                <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Log In</legend>
-                    <div class="form-group">
-                        <label >{{form.email.label}}</label>
-                        {{form.email(class= 'form-control form-control-lg')}}
-                    </div>
-                    <div class="form-group">
-                        <label >{{form.password.label}}</label>
-                        {{form.password(class= 'form-control form-control-lg')}}
-                    </div>
-                    <div class="form-group form-check">
-                        {{form.remember(class= 'form-check-input')}}
-                        <label class="form-check-label">Remember me</label>
-                    </div>
-                    {{form.submit(class='btn btn-primary btn-block')}}
-                </fieldset>
-            </form>
-        </div>
-    </div>
+    <section class='container-fluid'>
+        <section class='row justify-content-center'>
+            {%with messages = get_flashed_messages(with_categories=true)%}
+                {%if messages%}
+                    {% for category, message in messages%}
+                        <div class='col-8'>
+                            <div class="alert alert-{{category}}">
+                                {{message}}
+                            </div>
+                        </div>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+        </section>
+        <section class='row justify-content-center'>
+            <div class = 'col-8 col-xs-6 col-sm-6 col-md-5 col-lg-4 col-xl-3'>
+                <form method="POST" action='' class='form-container'>
+                    {{form.hidden_tag()}}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Sign In</legend>
+                        <div class="form-group">
+                            <label >{{form.email.label}}</label>
+                            {%if form.email.errors%}
+                                {{form.email(class= 'form-control form-control-lg is-invalid')}}
+                                <div class='invalid-feedback'>
+                                    {%for error in form.email.errors%}
+                                        <span>{{error}}</span>
+                                    {%endfor%}
+                                </div>
+                            {%else%}
+                                {{form.email(class= 'form-control form-control-lg')}}
+                            {%endif%}
+                        </div>
+                        <div class="form-group">
+                            <label >{{form.password.label}}</label>
+                            {%if form.password.errors%}
+                                {{form.password(class= 'form-control form-control-lg is-invalid')}}
+                                <div class='invalid-feedback'>
+                                    {%for error in form.password.errors%}
+                                        <span>{{error}}</span>
+                                    {%endfor%}
+                                </div>
+                            {%else%}
+                                {{form.password(class= 'form-control form-control-lg')}}
+                            {%endif%}
+                        </div>
+                        <div class="form-group form-check">
+                            {{form.remember(class= 'form-check-input')}}
+                            <label class="form-check-label">Remember me</label>
+                        </div>
+                        <div class='form-group mb-1'>
+                            {{form.submit(class='btn btn-primary btn-block')}}
+                        </div>
+                        <div class='text-center'>
+                            <small class="text-muted text-center">
+                                <a href="#">Forgot Password?</a>
+                            </small>
+                        </div>
+                        <div class='text-center'>
+                            <small class="text-muted">
+                                <a href="{{ url_for('register') }}">Sign Up</a>
+                            </small>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </section>
 {%endblock content%}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect, flash
 from forms import loginForm
 
 app = Flask(__name__)
@@ -20,14 +20,26 @@ bug_list = [
 ]
 
 @app.route('/')
-# @app.route('/home')
-def home_page():
+def landing():
     return render_template('landing.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = loginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'JimmyLam978@gmail.com' and form.password.data == 'password':
+            return redirect(url_for('home'))
+        else:
+            flash('Login unsuccessful, please check email and password','danger')
     return render_template('login.html', title='Login', form = form)
+
+@app.route('/home')
+def home():
+    return render_template("home.html", bug_list=bug_list)
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
 
 @app.route('/add_bug')
 def add_bug():
