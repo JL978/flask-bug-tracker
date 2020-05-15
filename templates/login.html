@@ -1,5 +1,6 @@
 {%extends 'template.html'%}
 {%block content%}
+    <script src='{{url_for("static",filename="demo-user.js")}}'></script>
     <section class='container-fluid'>
         <section class='row justify-content-center'>
             {%with messages = get_flashed_messages(with_categories=true)%}
@@ -14,11 +15,11 @@
                 {%endif%}
             {%endwith%}
         </section>
-        <section class='row justify-content-center'>
-            <div class = 'col-8 col-xs-6 col-sm-6 col-md-5 col-lg-4 col-xl-3'>
+        <section class='row justify-content-center login-row'>
+            <div class = 'col-8 col-xs-8 col-sm-6 col-md-5 col-lg-4 col-xl-3'>
                 <form method="POST" action='' class='form-container'>
                     {{form.hidden_tag()}}
-                    <fieldset class="form-group">
+                    <fieldset class="form-group form-content">
                         <legend class="border-bottom mb-4">Sign In</legend>
                         <div class="form-group">
                             <label >{{form.email.label}}</label>
@@ -63,9 +64,30 @@
                                 <a href="{{ url_for('register') }}">Sign Up</a>
                             </small>
                         </div>
+                        <div class='container-fluid' id= 'demo-users'>
+                            <div class= 'row'>
+                                <div class= 'col d-flex justify-content-center'>
+                                    <img src="{{url_for('static', filename = 'media/user.png')}}">
+                                </div>
+                                <div class= 'col d-flex justify-content-center'>
+                                    <img src="{{url_for('static', filename = 'media/user.png')}}">
+                                </div>
+                            </div>
+                            <div class= 'row'>
+                                <div class= 'col d-flex justify-content-center'>
+                                    <img src="{{url_for('static', filename = 'media/user.png')}}">
+                                </div> 
+                                <div class= 'col d-flex justify-content-center'>
+                                    <img src="{{url_for('static', filename = 'media/user.png')}}">
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>
+        </section>
+        <section class='row justify-content-center demo-row'>
+            <button type='button' class='btn btn-info' id='demo-button'>Demo Users</button>
         </section>
     </section>
 {%endblock content%}
